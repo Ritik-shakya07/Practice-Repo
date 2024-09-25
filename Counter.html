@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter with Up, Down, Reset (DOM only)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .display {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            margin: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+        <button onclick="increment()">Up</button>
+        <button onclick="decrement()">Down</button>
+        <button onclick="reset()">Reset</button>
+    </div>
+
+    <script>
+        let count = 0;
+
+        function updateDisplay() {
+            document.getElementById('display').textContent = count;
+        }
+
+        function increment() {
+            count++;
+            updateDisplay();
+        }
+
+        function decrement() {
+            count--;
+            updateDisplay();
+        }
+
+        function reset() {
+            count = 0;
+            updateDisplay();
+        }
+    </script>
+</body>
+</html>
