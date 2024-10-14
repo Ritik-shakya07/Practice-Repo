@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPTCHA Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #0056b3;
+        }
+        .captcha-container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(202, 49, 49, 0.1);
+            border-radius: 10px;
+        }
+        .captcha {
+            font-size: 24px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            background-color: #ddd;
+            padding: 10px;
+            display: inline-block;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            user-select: none;
+        }
+        button {
+            padding: 8px 15px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        input {
+            padding: 8px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .message {
+            margin-top: 10px;
+            font-size: 14px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="captcha-container">
+    <div id="captcha" class="captcha"></div>
+    <button onclick="refreshCaptcha()">Refresh CAPTCHA</button>
+
+    <div>
+        <input type="text" id="captchaInput" placeholder="Enter CAPTCHA">
+    </div>
+    <button onclick="checkCaptcha()">Submit</button>
+    
+    <div id="message" class="message"></div>
+</div>
+
+<script>
+let com = '';
+function show() {
+    // Reset the com variable to an empty string
+    com = '';
+    
+    let character = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890';
+    for (let i = 0; i < 6; i++) {
+        let store = character.charAt(Math.floor(Math.random() * character.length));
+        com += store;
+    }
+    document.getElementById('captcha').innerHTML = com;
+    return com;
+}
+
+function refreshCaptcha() {
+    document.getElementById('captchaInput').value = ''; // Reset input field
+    document.getElementById('message').innerText = '';  // Reset message field
+    show();  // Generate a new CAPTCHA
+}
+
+function checkCaptcha() {
+    let userInput = document.getElementById('captchaInput').value; // Get user input
+    if (userInput === com) {
+        alert('Congratulations! You entered the correct CAPTCHA.');
+    } else {
+        alert('Incorrect CAPTCHA. Try again!');
+    }
+}
+
+show();  // Generate the first CAPTCHA on page load
+</script>
+
+</body>
+</html>
