@@ -73,31 +73,25 @@
             <button type="submit" class="submit-btn">Submit</button>
         </form>
     </div>
-    <?php
-// Database configuration
+    <?php
 $servername = "localhost";
-$username = "root"; // Default username for XAMPP
-$password = "";     // Default password for XAMPP (usually blank)
-$dbname = "employe_db"; // The database name you created in phpMyAdmin
-
-// Create connection
+$username = "root";
+$password = "";     
+$dbname = "employe_db"; 
+
 $conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $employee_name = $_POST['employee_name'];
     $employee_id = $_POST['employee_id'];
     $employee_salary = $_POST['employee_salary'];
     $employee_email = $_POST['employee_email'];
-    $employee_password = password_hash($_POST['employee_password'], PASSWORD_DEFAULT); // Hash the password
+    $employee_password = password_hash($_POST['employee_password'], PASSWORD_DEFAULT); 
 
-    // Insert data into the database
     $sql = "INSERT INTO employees (employee_name, employee_id, employee_salary, employee_email, employee_password)
             VALUES ('$employee_name', '$employee_id', '$employee_salary', '$employee_email', '$employee_password')";
 
